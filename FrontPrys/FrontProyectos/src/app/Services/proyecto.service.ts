@@ -14,6 +14,7 @@ export class ProyectoService {
     var proyectos = this.http
       .get<IProyecto[]>(this.rutaAPI)
       .pipe(catchError(this.manejoErrores));
+      console.log(proyectos,'Proyectos');
     return proyectos;
   }
   manejoErrores(error: HttpErrorResponse) {
