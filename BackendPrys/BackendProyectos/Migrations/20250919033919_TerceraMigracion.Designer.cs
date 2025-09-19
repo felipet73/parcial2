@@ -4,6 +4,7 @@ using BackendProyectos.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackendProyectos.Migrations
 {
     [DbContext(typeof(DataDbContext))]
-    partial class DataDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250919033919_TerceraMigracion")]
+    partial class TerceraMigracion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,6 +59,21 @@ namespace BackendProyectos.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Proyecto");
+                });
+
+            modelBuilder.Entity("EmpleadoModelProyectosModel", b =>
+                {
+                    b.Property<int>("Empleados_AsignadosId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Proyectos_AsignadosId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Empleados_AsignadosId", "Proyectos_AsignadosId");
+
+                    b.HasIndex("Proyectos_AsignadosId");
+
+                    b.ToTable("EmpleadoModelProyectosModel");
                 });
 
             modelBuilder.Entity("Tipo_Datos.Models.Entidades.EmpleadoModel", b =>
@@ -124,7 +142,45 @@ namespace BackendProyectos.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EmpleadoId");
+
+                    b.HasIndex("ProyectoId");
+
                     b.ToTable("EmpleadoProyecto");
+                });
+
+            modelBuilder.Entity("EmpleadoModelProyectosModel", b =>
+                {
+                    b.HasOne("Tipo_Datos.Models.Entidades.EmpleadoModel", null)
+                        .WithMany()
+                        .HasForeignKey("Empleados_AsignadosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BackendProyectos.Models.Entidades.ProyectosModel", null)
+                        .WithMany()
+                        .HasForeignKey("Proyectos_AsignadosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Tipo_Datos.Models.Entidades.EmpleadoProyectoModel", b =>
+                {
+                    b.HasOne("Tipo_Datos.Models.Entidades.EmpleadoModel", "Empleado")
+                        .WithMany()
+                        .HasForeignKey("EmpleadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BackendProyectos.Models.Entidades.ProyectosModel", "Proyecto")
+                        .WithMany()
+                        .HasForeignKey("ProyectoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Empleado");
+
+                    b.Navigation("Proyecto");
                 });
 #pragma warning restore 612, 618
         }

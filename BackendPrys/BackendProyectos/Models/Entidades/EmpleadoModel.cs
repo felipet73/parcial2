@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Timers;
+using BackendProyectos.Models.Entidades;
 using BackendProyectos.Models.Entidades.Base;
 
 namespace Tipo_Datos.Models.Entidades

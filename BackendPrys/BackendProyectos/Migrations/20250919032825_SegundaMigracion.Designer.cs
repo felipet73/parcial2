@@ -4,6 +4,7 @@ using BackendProyectos.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackendProyectos.Migrations
 {
     [DbContext(typeof(DataDbContext))]
-    partial class DataDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250919032825_SegundaMigracion")]
+    partial class SegundaMigracion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,6 +61,21 @@ namespace BackendProyectos.Migrations
                     b.ToTable("Proyecto");
                 });
 
+            modelBuilder.Entity("EmpleadoModelProyectosModel", b =>
+                {
+                    b.Property<int>("Empleados_AsignadosId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Proyectos_AsignadosId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Empleados_AsignadosId", "Proyectos_AsignadosId");
+
+                    b.HasIndex("Proyectos_AsignadosId");
+
+                    b.ToTable("EmpleadoModelProyectosModel");
+                });
+
             modelBuilder.Entity("Tipo_Datos.Models.Entidades.EmpleadoModel", b =>
                 {
                     b.Property<int>("Id")
@@ -96,35 +114,19 @@ namespace BackendProyectos.Migrations
                     b.ToTable("Empleado");
                 });
 
-            modelBuilder.Entity("Tipo_Datos.Models.Entidades.EmpleadoProyectoModel", b =>
+            modelBuilder.Entity("EmpleadoModelProyectosModel", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.HasOne("Tipo_Datos.Models.Entidades.EmpleadoModel", null)
+                        .WithMany()
+                        .HasForeignKey("Empleados_AsignadosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Create_At")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("EmpleadoId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("FechaAdignacion")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ProyectoId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Update_At")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("isDelete")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EmpleadoProyecto");
+                    b.HasOne("BackendProyectos.Models.Entidades.ProyectosModel", null)
+                        .WithMany()
+                        .HasForeignKey("Proyectos_AsignadosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

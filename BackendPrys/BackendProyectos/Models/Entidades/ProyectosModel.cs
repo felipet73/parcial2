@@ -13,13 +13,8 @@
         [Required(ErrorMessage = "Cammpo Requerido")]        
         public string Descripcion { get; set; } 
         [Required(ErrorMessage = "Cammpo Requerido")]
-        public string FechaInicio { get; set; }
+        public DateTime FechaInicio { get; set; }
         [Required(ErrorMessage = "Cammpo Requerido")]
-        public string FechaFin { get; set; }
-        public ICollection<EmpleadoModel> Empleados_Asignados { get; set; }
-        public ProyectosModel()
-        {
-            Empleados_Asignados = new List<EmpleadoModel>();
-        }
+        public DateTime FechaFin { get; set; }        
     }
 }
