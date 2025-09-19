@@ -1,0 +1,59 @@
+## Archivos de compilación
+bin/
+obj/
+out/
+Debug/
+Release/
+
+## Archivos de usuario (config locales de Visual Studio)
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+## Configuración de Rider / VSCode
+.idea/
+.vscode/
+
+## Paquetes NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+packages/
+# Excepto cuando el repositorio los necesita
+!packages/build/
+
+## Archivos temporales
+*.tmp
+*.temp
+*.log
+*.vspscc
+*.vssscc
+*.cache
+*.pdb
+
+## Archivos generados automáticamente
+*.dbmdl
+*.bak
+*.ldf
+*.mdf
+
+## Publicaciones
+publish/
+*.Publish.xml
+
+## Archivos de IIS / Web
+*.vs/
+*.db
+project.lock.json
+
+## Archivos de test
+TestResults/
+*.coverage
+*.coveragexml
+*.trx
+
+## Sistema operativo
+.DS_Store
+Thumbs.db
+ehthumbs.db
