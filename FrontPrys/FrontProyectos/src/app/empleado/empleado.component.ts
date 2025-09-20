@@ -19,17 +19,10 @@ declare const Swal: any;
 export class EmpleadoComponent {
   lista_empleados$!: IEmpleado[];
   emailuser: string = '';
-  constructor(private empleadoServicio: EmpleadoService) {
-
-  }
+  constructor(private empleadoServicio: EmpleadoService) { }
 
   ngOnInit() {
     this.cargaTabla();
-    /*this.emailuser = localStorage.getItem('User') || '';
-    if (this.emailuser == '') {
-      location.href = '/login';
-    }*/
-
   }
   cargaTabla() {
     this.empleadoServicio.todos().subscribe((empleados) => {

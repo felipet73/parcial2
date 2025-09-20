@@ -1,0 +1,100 @@
+<div class="container">
+  <h1>Asignar Empleados a Proyectos</h1>
+  <form [formGroup]="asignacionforms" (ngSubmit)="guardarAsignacion()" novalidate>
+    <div class="form-group">
+      <label for="proyectoid">Id Proyecto</label>
+      <input
+        formControlName="proyectoid"
+        type="text"
+        class="form-control"
+        id="proyectoid"
+        placeholder="Proyectoid"
+        (keyup)="buscarProyecto($event)"
+      />
+      <div
+        class="invalid-feedback d-block"
+        *ngIf="
+          asignacionforms.get('proyectoid')?.touched &&
+          asignacionforms.get('proyectoid')?.invalid
+        "
+      >
+        El id es requerido.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="nombre">Nombre Proyecto</label>
+      <input
+        formControlName="nombre"
+        type="text"
+        class="form-control"
+        id="nombre"
+        placeholder="Nombre"
+        readonly
+      />      
+    </div>
+    <div class="form-group">
+      <label for="Descripcion">Email</label>
+      <input
+        type="description"
+        formControlName="descripcion"
+        class="form-control"
+        id="descripcion"
+        placeholder="Description"
+        readonly
+      />
+    </div>
+    <div class="form-group">
+      <label for="empleadoid">Empleado</label>
+      <input
+        type="emppleadoid"
+        formControlName="empleadoid"
+        class="form-control"
+        id="empleadoid"
+        placeholder="EmpleadoId"
+        (keyup)="buscarEmpleado($event)"
+      />
+    </div>
+    <div class="form-group">
+      <label for="nombres">Nombres</label>
+      <input
+        type="nombres"
+        formControlName="nombres"
+        class="form-control"
+        id="nombres"
+        placeholder="nombres"
+        readonly
+      />
+    </div>
+    <div class="form-group">
+      <label for="apellidos">Apellidos</label>
+      <input
+        type="apellidos"
+        formControlName="apellidos"
+        class="form-control"
+        id="apellidos"
+        placeholder="Apellidos"
+        readonly
+      />
+    </div>
+    <div class="form-group">
+      <label for="posicion">Posicion</label>
+      <input
+        type="posicion"
+        formControlName="posicion"
+        class="form-control"
+        id="posicion"
+        placeholder="Posicion"
+        readonly
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!asignacionforms.valid"
+    >
+      Asignar
+    </button>
+    <button class="btn btn-secondary" routerLink="/">Cancelar</button>
+  </form>
+</div>

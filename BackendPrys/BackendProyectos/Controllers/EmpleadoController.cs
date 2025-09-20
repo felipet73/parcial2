@@ -51,7 +51,7 @@ namespace BackendProyectos.Controllers
             {
                 return BadRequest();
             }
-
+            empleadoModel.Update_At = DateTime.Now;
             _context.Entry(empleadoModel).State = EntityState.Modified;
 
             try
@@ -78,6 +78,9 @@ namespace BackendProyectos.Controllers
         [HttpPost]
         public async Task<ActionResult<EmpleadoModel>> PostEmpleadoModel(EmpleadoModel empleadoModel)
         {
+            empleadoModel.Create_At = DateTime.Now;
+            empleadoModel.Update_At = DateTime.Now;
+
             _context.Empleados.Add(empleadoModel);
             await _context.SaveChangesAsync();
 

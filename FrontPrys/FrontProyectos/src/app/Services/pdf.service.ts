@@ -22,8 +22,8 @@ export class PdfService {
       String(proyecto.id),
       proyecto.nombre,
       proyecto.descripcion,
-      proyecto.fechainicio,
-      proyecto.fechafin,
+      proyecto.fechainicio.toISOString(),
+      proyecto.fechafin.toISOString(),
     ])
 
     autoTable(doc,{

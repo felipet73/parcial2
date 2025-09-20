@@ -1,0 +1,33 @@
+<div class="container-md">
+  <div class="row">
+
+    <div class="header">
+      <h1><h1>Lista de Asignacione de cada proyecto</h1></h1>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table table-responsive table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>ProyectoId</th>
+          <th>Nombre Proyecto</th>
+          <th>Descripcion</th>
+          <th>Empleado Id</th>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+          <th>Posicion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let asignacion of lista_asignaciones$; let i = index">          
+          <td>{{ asignacion.proyectoid }}</td>
+          <td>{{ NombreProyecto(asignacion.proyectoid) }} </td>
+          <td>{{ DescripcionProyecto(asignacion.proyectoid) }}</td>
+          <td>{{ asignacion.empleadoid }}</td>
+          <td>{{ NombresEmpleado(asignacion.empleadoid) }}</td>
+          <td>{{ ApellidosEmpleado(asignacion.empleadoid) }}</td>
+          <td>{{ PosicionEmpleado(asignacion.empleadoid) }}</td> 
+        </tr>
+      </tbody>
+    </table>
+

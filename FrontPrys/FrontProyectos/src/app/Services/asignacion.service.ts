@@ -1,21 +1,21 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
-import { IProyecto } from '../interfaces/iproyecto';
+import { IAsignacion } from '../interfaces/iasignacion';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProyectoService {
-  private readonly rutaAPI = 'https://localhost:7187/api/Proyectos';
+export class AsignacionService {
+  private readonly rutaAPI = 'https://localhost:7187/api/EmpleadoProyecto';
   constructor(private http: HttpClient) {}
 
-  todos(): Observable<IProyecto[]> {
-    var proyectos = this.http
-      .get<IProyecto[]>(this.rutaAPI)
+  todos(): Observable<IAsignacion[]> {
+    var asignacions = this.http
+      .get<IAsignacion[]>(this.rutaAPI)
       .pipe(catchError(this.manejoErrores));
-      console.log(proyectos,'Proyectos');
-    return proyectos;
+      console.log(asignacions,'Asignacions');
+    return asignacions;
   }
   manejoErrores(error: HttpErrorResponse) {
     const msg = error.error?.message || error.statusText || 'Error de red';
@@ -24,23 +24,22 @@ export class ProyectoService {
     });
   }
 
-  guardarProyecto(proyecto: IProyecto): Observable<IProyecto> {
-    console.log(proyecto,'Proyecto a guardar');
+  guardarAsignacion(asignacion: IAsignacion): Observable<IAsignacion> {
     return this.http
-      .post<IProyecto>(this.rutaAPI, proyecto)
+      .post<IAsignacion>(this.rutaAPI, asignacion)
       .pipe(catchError(this.manejoErrores));
   }
-  actualizarProyecto(proyecto: IProyecto): Observable<IProyecto> {
+  actualizarAsignacion(asignacion: IAsignacion): Observable<IAsignacion> {
     return this.http
-      .put<IProyecto>(`${this.rutaAPI}/${proyecto.id}`, proyecto)
+      .put<IAsignacion>(`${this.rutaAPI}/${asignacion.id}`, asignacion)
       .pipe(catchError(this.manejoErrores));
   }
-  unProyecto(id: number): Observable<IProyecto> {
+  unAsignacion(id: number): Observable<IAsignacion> {
     return this.http
-      .get<IProyecto>(`${this.rutaAPI}/${id}`)
+      .get<IAsignacion>(`${this.rutaAPI}/${id}`)
       .pipe(catchError(this.manejoErrores));
   }
-  eliminarProyecto(id:number): Observable<number>{
+  eliminarAsignacion(id:number): Observable<number>{
     return this.http
       .delete<number>(`${this.rutaAPI}/${id}`)
       .pipe(catchError(this.manejoErrores));

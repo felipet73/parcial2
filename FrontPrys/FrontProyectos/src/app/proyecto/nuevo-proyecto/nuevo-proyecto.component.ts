@@ -41,11 +41,9 @@ export class NuevoProyectoComponent implements OnInit {
       ]),
       fechainicio: new FormControl('', [
         Validators.required,
-        Validators.minLength(3),
       ]),
       fechafin: new FormControl('', [
         Validators.required,
-        Validators.minLength(7),
       ]),      
     });
     this.parametros.params.subscribe((parametros) => {
