@@ -48,7 +48,7 @@ export class ReporteAsignacionComponent {
   }
 
   NombreProyecto(idProyecto:string) {
-    alert(idProyecto)
+    console.log(idProyecto)
     return  this.lista_proyectos$.find(pr=>pr.id === Number(idProyecto))?.nombre;
   } 
   DescripcionProyecto(idProyecto:string) {
